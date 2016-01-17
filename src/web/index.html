@@ -1,0 +1,71 @@
+
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <title>Hackerspace IoT</title>
+	
+      <script type="text/javascript">
+            if ("WebSocket" in window)
+            {
+               console.log("Hello" + window.location.hostname);
+               
+               // If running from a file hostname will be empty
+               var host = "localhost"
+               if (window.location.hostname)
+               {
+                  host = window.location.hostname;
+               }
+               
+               // Let us open a web socket
+               var ws = new WebSocket("ws://" + host + ":8702/");
+                
+               ws.onopen = function()
+               {
+                  // Web Socket is connected, send data using send()
+                  // Feel free to remove or change this message
+                  ws.send("Initial Message");
+               };
+                
+               ws.onmessage = function (evt) 
+               { 
+                  var received_msg = evt.data;
+                  console.log("Message is received..." + received_msg);
+                  processIncomingMsg(received_msg);
+               };
+                
+               ws.onclose = function()
+               { 
+                  // websocket is closed.
+                  console.log("Connection is closed..."); 
+               };
+            }
+            
+            else
+            {
+               // The browser doesn't support WebSocket
+               alert("WebSocket NOT supported by your Browser!");
+               console.log("WebSocket NOT supported by your Browser!");
+            }
+            
+            function processIncomingMsg(msg)
+            {
+               var existing = document.getElementById("output").innerHTML;
+               document.getElementById("output").innerHTML = existing + "<br />" + msg;
+            }
+            
+            function sendPing()
+            {
+              ws.send("Ping");
+            }
+      </script>
+		
+   </head>
+   <body>
+   
+      <div id="sse">
+         <a href="javascript:sendPing()">Send Ping</a>
+      </div>
+      <div id="output"></div>
+   </body>
+</html>
