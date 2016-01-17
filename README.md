@@ -2,7 +2,7 @@
 A framework for linking a arduino to a webbrowser, via a RS-232 Uart (Serial) interface and a Raspberry Pi or PC running a web server and provided python application.
 
 Developed in conjunction with Hackerspace Adelaide. http://hackerspace-adelaide.org.au/
-
+It was originally based on code written for my robot https://github.com/simotek/tanko-bot
 ## src/server
 A python3 Websocket server that forwards data between the web browser and a serial port on the running machine.
 
