@@ -9,12 +9,13 @@ A python3 Websocket server that forwards data between the web browser and a seri
 
 Note the PyLibs dir is licensed lgpl2.1
 
-### Usage
+#### Usage
+`python3 main.py`
 
 ## src/web
 A web page that connects to the server and sends / recieves data from it and the arduino
 
-### Usage
+#### Usage
 Add the file to the web server on your machine or just open the file in your browser.
 
 ## src/arduino
